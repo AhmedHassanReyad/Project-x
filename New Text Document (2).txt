@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+</head>
+
+<?php
+$con = mysqli_connect("localhost","root",NULL,"test")or die ("error Connection");    
+?>
+<?php
+
+if (!isset($_POST['submit']))
+{
+?>
+<form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']);?>">
+	
+	<label>NameID</label>
+	<input type="text" name="username"><br><br>
+
+	<label> emil </label>
+	<input type="mail" name="email"><br><br>
+    
+    <label>Phone1 </label>
+    <input type="tex" name="phone"><br><br>
+    <label>gender</label><br>   
+    <label>male</label>
+    <input type="radio" name="n1"><br>
+    <label>female</label>
+    <input type="radio" name="n1">
+    <br><br>
+    <label>Address : </label>
+    <textarea name="msg" cols="50" rows="3" style="resize: none;"></textarea><br><br>
+
+    <input type="submit" name="submit" value="ADD">
+
+</form>
+<?php
+}
+else
+{
+	$name=$_POST['username'];
+	$email=$_POST['email'];
+	$phone=$_POST['phone'];
+	$address=$_POST['msg'];
+        echo $name . "<br>" . $email . "<br>" . $phone . "<br>" . $address ;
+        $result = mysqli_query($con,"insert into subject values(null,'$Address','$phone','$emil','$gender')");
+        
+	if($result)
+        {
+            echo "INSERTED";
+        }
+        else
+        {
+            echo mysqli_error($con);
+        }
+}
+?>
+</body>
+</html>
